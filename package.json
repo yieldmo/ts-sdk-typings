@@ -11,5 +11,6 @@
     "url": "git@gitlab.yieldmo.com:ecarneiro/ts-sdk-typings.git"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "types": "./ts-sdk-typings/index.d.ts"
 }
