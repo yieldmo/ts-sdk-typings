@@ -71,13 +71,13 @@ export class ScrollEventMessage {
   constructor(x: number, y: number, screenHeight: number, screenWidth: number);
 }
 
-export class Log {
-  public static getLogLevel(): LogLevel;
-  public static warn(...logArgs: Object[]): void;
-  public static error(...logArgs: Object[]): void;
-  public static info(...logArgs: Object[]): void;
-  public static debug(...logArgs: Object[]): void;
-  public static setLevel(logLevel: LogLevel): void;
+export interface Log {
+  getLogLevel(): LogLevel;
+  warn(...logArgs: Object[]): void;
+  error(...logArgs: Object[]): void;
+  info(...logArgs: Object[]): void;
+  debug(...logArgs: Object[]): void;
+  setLevel(logLevel: LogLevel): void;
 }
 
 export enum LogLevel {
