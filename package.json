@@ -1,7 +1,7 @@
 {
   "name": "ts-sdk-typings",
   "version": "1.0.0",
-  "description": "git clone git@gitlab.yieldmo.com:ecarneiro/ts-sdk-typings.git cd ts-sdk-typings touch README.md git add README.md git commit -m \"add README\" git push -u origin mast",
+  "description": "stuff",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
