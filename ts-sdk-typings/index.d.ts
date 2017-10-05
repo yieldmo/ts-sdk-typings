@@ -61,12 +61,12 @@ export interface BoundingClientRect {
   width: number;
 }
 
-export class ScrollEventMessage {
-  public boundingFormatRect: BoundingClientRect | null;
-  public x: number;
-  public y: number;
-  public screenHeight: number;
-  public screenWidth: number;
+export interface ScrollEventMessage {
+  boundingFormatRect: BoundingClientRect | null;
+  x: number;
+  y: number;
+  screenHeight: number;
+  screenWidth: number;
 
   constructor(x: number, y: number, screenHeight: number, screenWidth: number);
 }
