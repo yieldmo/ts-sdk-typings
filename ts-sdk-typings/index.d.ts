@@ -29,7 +29,6 @@ export function isAMP(): boolean;
 export function isAndroid(): boolean;
 export function isDFP(): boolean;
 export function isIOS(): boolean;
-// export let placements: { [key: string]: Placement };
 export function requestFullScreenMode(formatIframe: HTMLIFrameElement): void;
 export function resetDimensions(formatIframe: HTMLIFrameElement): boolean;
 export function topElem(): HTMLBodyElement | HTMLHeadElement;
@@ -39,7 +38,6 @@ export function availableEnvironmentFeatures(): AvailableFeatures;
 export function clearPlacement(placementWindow: PlacementWindow): void;
 
 export interface PlacementWindow extends Window {
-  // YM_Placement: Placement;
   YM_SDK: any;
   YMHandlebars: any;
 }
@@ -67,8 +65,6 @@ export interface ScrollEventMessage {
   y: number;
   screenHeight: number;
   screenWidth: number;
-
-  constructor(x: number, y: number, screenHeight: number, screenWidth: number);
 }
 
 export interface Log {
