@@ -1,6 +1,6 @@
 {
   "name": "@types/ts-sdk-typings",
-  "version": "0.0.0",
+  "version": "9.1.6",
   "description": "stuff",
   "main": "index.js",
   "scripts": {
