@@ -1,5 +1,5 @@
 {
-  "name": "@yieldmo/ts-sdk-typings",
+  "name": "@types/ts-sdk-typings",
   "version": "0.0.2",
   "description": "stuff",
   "main": "index.js",
