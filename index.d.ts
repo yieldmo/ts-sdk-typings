@@ -158,8 +158,9 @@ export function trackEv(type : string, startTime : string | number, eventData : 
  *
  * @param message error message
  * @param formatWindow the format's window
+ * @param type error type
  */
-export function trackError(message : string, formatWindow : PlacementWindow) : void;
+export function trackError(message : string, formatWindow : PlacementWindow, type?: string) : void;
 
 /**
  * @returns supported features of the environment.
