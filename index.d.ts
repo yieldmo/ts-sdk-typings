@@ -49,7 +49,7 @@ export function attachVisibilityEvent(placementWindow: PlacementWindow, listener
  *
  * @param listener
  */
-export function detachFormatEventListener(placementWindow: PlacementWindow, eventName: string, listener: Function): void;
+export function detachVisibilityEvent(listener: Function): void;
 
 /**
  * Adds an event listener through the YM_SDK object, for events which need to be proxied through the sdk
