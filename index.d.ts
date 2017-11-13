@@ -219,7 +219,11 @@ export interface PlacementWindow extends Window {
  */
 export interface AvailableFeatures {
   fullScreen: boolean;
+  newTab: boolean;
+  resize: boolean;
+  scroll: boolean;
   smoothScroll: boolean;
+  scrollEventQuality: ScrollEventQuality;
 }
 
 /**
@@ -302,4 +306,11 @@ export enum LogLevel {
   Warn, // also log messages that indicate potential problems
   Info, // also log informational messages
   Debug, // log many debugging messages
+}
+
+export enum ScrollEventQuality {
+  Normal = 0,  // scroll events areas normal on COP
+  Degraded = 1,  //  scroll events lightly throttled
+  HeavilyDegraded = 2,  //  scroll events heavily throttled
+  None = 3,  // no scroll events at all
 }
