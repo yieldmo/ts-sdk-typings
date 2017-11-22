@@ -100,6 +100,13 @@ export const FormatLog: Log;
 export function getBoundingClientRect(node: HTMLElement): BoundingClientRect;
 
 /**
+ * Fires the click tracking managers for a single placement.
+ *
+ * @param event click event
+ */
+export function fireClickTrackers(event?: Event, callback?: Function): void;
+
+/**
  * Invokes the successCallback and provides geolocation if geolocation is available, otherwise if a failureCallback
  * is given, calls that instead.
  *
@@ -224,6 +231,7 @@ export interface AvailableFeatures {
   scroll: boolean;
   smoothScroll: boolean;
   scrollEventQuality: ScrollEventQuality;
+  tilt: boolean;
 }
 
 /**
