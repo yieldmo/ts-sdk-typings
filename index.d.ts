@@ -1,4 +1,3 @@
-
 // Type definitions for YM_SDK (web-formats)
 // Project: ts-sdk
 
@@ -103,8 +102,10 @@ export function getBoundingClientRect(node: HTMLElement): BoundingClientRect;
  * Fires the click tracking managers for a single placement.
  *
  * @param event click event
+ * @param callback function to call after triggered
+ * @param placementWindow the placement window for the current placement
  */
-export function fireClickTrackers(event?: Event, callback?: Function): void;
+export function fireClickTrackers(event?: Event, callback?: Function, placementWindow?: PlacementWindow): void;
 
 /**
  * Invokes the successCallback and provides geolocation if geolocation is available, otherwise if a failureCallback
