@@ -209,12 +209,13 @@ export interface Sdk {
    * @param placementWindow the format's window
    */
   clearPlacement(placementWindow: PlacementWindow): void;
+  
+  /**
+   * Logging static utility class
+   */
+  FormatLog: Log;
 }
   
-/**
- * Logging static utility class
- */
-export const FormatLog: Log;
   
 /**
  * Type representing properties available to access within the format's window
