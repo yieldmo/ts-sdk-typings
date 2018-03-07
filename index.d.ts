@@ -229,7 +229,6 @@ export interface AvailableFeatures {
   fullScreen: boolean;
   newTab: boolean;
   resize: boolean;
-  resizeListening: boolean;
   scroll: boolean;
   smoothScroll: boolean;
   scrollEventQuality: ScrollEventQuality;
