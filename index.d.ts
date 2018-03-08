@@ -19,7 +19,6 @@ export interface Sdk {
    */
   addClickTrackers(placementId: string, clicktrackers: string[]): void;
 
-
   /**
    * Legacy no-op method, still being called by format 30 (Map)
    *
@@ -237,6 +236,7 @@ export interface AvailableFeatures {
   smoothScroll: boolean;
   scrollEventQuality: ScrollEventQuality;
   tilt: boolean;
+  topWindow: boolean;
 }
 
 /**
