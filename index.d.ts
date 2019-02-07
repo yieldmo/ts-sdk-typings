@@ -109,6 +109,15 @@ export interface Sdk {
   fireClickTrackers(event?: Event, callback?: Function, placementWindow?: PlacementWindow): void;
 
   /**
+   * Fires the click tracking managers for a single placement and opens the provided url
+   *
+   * @param url the url to open
+   * @param target the target for the url
+   * @param placementWindow the placement window for the current placement
+   */
+  fireClickTrackersAndOpenUrl(url: string, target: string, placementWindow: PlacementWindow): void;
+
+  /**
    * Invokes the successCallback and provides geolocation if geolocation is available, otherwise if a failureCallback
    * is given, calls that instead.
    *
