@@ -240,6 +240,7 @@ export interface PlacementWindow extends Window {
 export interface AvailableFeatures {
   fullScreen: boolean;
   iframeManipulation: boolean;
+  topNavigation: boolean;
   resize: boolean;
   scroll: boolean;
   smoothScroll: boolean;
