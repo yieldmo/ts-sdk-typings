@@ -238,6 +238,7 @@ export interface PlacementWindow extends Window {
  * Supported features of the environment returned by YM_SDK.availableEnvironmentFeatures
  */
 export interface AvailableFeatures {
+  autoplay: boolean;
   fullScreen: boolean;
   iframeManipulation: boolean;
   topNavigation: boolean;
