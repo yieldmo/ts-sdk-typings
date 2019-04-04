@@ -11,6 +11,14 @@ export as namespace YM_SDK;
  */
 
 export interface CommonSdk {
+
+  /**
+   * reports error to the ad server
+   * @param message message to give ad server
+   * @param type type of error
+   */
+  trackError(message: string, _: Window, type: string): void;
+
   /**
    * Reports an event to the ad server.
    *
@@ -20,9 +28,14 @@ export interface CommonSdk {
    * @param formatWindow the window of the placement that owns the event
    * @param creativeIds? send creative Ids with the event. If an event in the result of interaction with specific creatives, send an array of strings.
    * Otherwise, true sends all creative ids.
-  */
- trackEv(type: string, startTime: string | number, eventData: any, formatWindow: PlacementWindow,
-  creativeIds?: boolean | string[]): void;
+   */
+  trackEv(type: string, startTime: string | number, eventData: any, formatWindow: PlacementWindow,
+    creativeIds?: boolean | string[]): void;
+
+  /**
+   * Logging static utility class
+   */
+  FormatLog: Log;
 }
 
 export interface Sdk extends CommonSdk {
@@ -99,11 +112,6 @@ export interface Sdk extends CommonSdk {
    * @returns the topmost window we can access, or null if we do not have an environment manager
    */
   environmentTopWindow(): Window | null;
-
-  /**
-   * Logging static utility class
-   */
-  FormatLog: Log;
 
   /**
    * Fetches the bounding client rectangle of the given node, representing its position on the page,
@@ -234,14 +242,6 @@ export interface PlacementWindow extends Window {
   YM_SDK: Sdk;
   YMHandlebars: any;
 }
-
-/**
- * Type representing properties available to access within the insights VPAID format's window
- */
-export interface InsightsWindow extends Window {
-  YMI_SDK: CommonSdk;
-}
-
 
 /**
  * Supported features of the environment returned by YM_SDK.availableEnvironmentFeatures
