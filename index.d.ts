@@ -29,7 +29,7 @@ export interface CommonSdk {
    * @param creativeIds? send creative Ids with the event. If an event in the result of interaction with specific creatives, send an array of strings.
    * Otherwise, true sends all creative ids.
    */
-  trackEv(type: string, startTime: string | number, eventData: any, formatWindow: PlacementWindow,
+  trackEv(type: string, startTime: string | number, eventData: any, formatWindow: PlacementWindow | Window,
     creativeIds?: boolean | string[]): void;
 
   /**
