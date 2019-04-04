@@ -10,7 +10,22 @@ export as namespace YM_SDK;
  * Public methods and properties exposed for web-formats
  */
 
-export interface Sdk {
+export interface CommonSdk {
+  /**
+   * Reports an event to the ad server.
+   *
+   * @param kind format event kind
+   * @param startTime date when event began
+   * @param eventData key/value pairs from format for event
+   * @param formatWindow the window of the placement that owns the event
+   * @param creativeIds? send creative Ids with the event. If an event in the result of interaction with specific creatives, send an array of strings.
+   * Otherwise, true sends all creative ids.
+  */
+ trackEv(type: string, startTime: string | number, eventData: any, formatWindow: PlacementWindow,
+  creativeIds?: boolean | string[]): void;
+}
+
+export interface Sdk extends CommonSdk {
   /**
    * Adds clicktrackers to a placement's creatives' existing configurables.clicktrackers
    *
@@ -185,19 +200,6 @@ export interface Sdk {
   topElem(): HTMLBodyElement | HTMLHeadElement;
 
   /**
-   * Reports an event to the ad server.
-   *
-   * @param kind format event kind
-   * @param startTime date when event began
-   * @param eventData key/value pairs from format for event
-   * @param formatWindow the window of the placement that owns the event
-   * @param creativeIds? send creative Ids with the event. If an event in the result of interaction with specific creatives, send an array of strings.
-   * Otherwise, true sends all creative ids.
-  */
-  trackEv(type: string, startTime: string | number, eventData: any, formatWindow: PlacementWindow,
-    creativeIds?: boolean | string[]): void;
-
-  /**
    * Notifies the ad-server of an error being recorded.
    *
    * @param message error message
@@ -225,7 +227,6 @@ export interface Sdk {
   clearPlacement(placementWindow: PlacementWindow): void;
 }
 
-
 /**
  * Type representing properties available to access within the format's window
  */
@@ -233,6 +234,14 @@ export interface PlacementWindow extends Window {
   YM_SDK: Sdk;
   YMHandlebars: any;
 }
+
+/**
+ * Type representing properties available to access within the insights VPAID format's window
+ */
+export interface InsightsWindow extends Window {
+  YMI_SDK: CommonSdk;
+}
+
 
 /**
  * Supported features of the environment returned by YM_SDK.availableEnvironmentFeatures
