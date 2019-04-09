@@ -36,6 +36,11 @@ export interface CommonSdk {
    * Logging static utility class
    */
   FormatLog: Log;
+
+  /**
+   * Cleans up placement and implodes sdk
+   */
+  destroy(): void;
 }
 
 export interface Sdk extends CommonSdk {
