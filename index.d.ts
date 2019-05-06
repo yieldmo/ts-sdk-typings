@@ -2,11 +2,6 @@
 // Project: ts-sdk
 
 /**
- * The ts-sdk is exposed as a global variable 'YM_SDK' in the format's window
- */
-export as namespace YM_SDK;
-
-/**
  * Public methods and properties exposed for web-formats
  */
 
