@@ -217,6 +217,11 @@ export interface Sdk extends CommonSdk {
   trackError(message: string, formatWindow: PlacementWindow, type?: string): void;
 
   /**
+   * Notifies the ad-server of reports being catched
+   */
+  trackReports(reports: Report[], formatWindow: PlacementWindow): void
+
+  /**
    * @returns supported features of the environment.
    * Smooth scroll indicates that we receive frequent position updates,
    * Full screen indicates full screen videos are available.
@@ -347,3 +352,40 @@ export enum ScrollEventQuality {
   HeavilyDegraded = 2,  //  scroll events heavily throttled
   None = 3,  // no scroll events at all
 }
+
+/*
+ * Report typings
+ * TODO: Should be removed once ReportingObserver will be standardised
+ */
+
+type ReportType = 'crash' | 'deprecation' | 'intervention';
+
+type CrashReportBody = {
+  readonly crashId: string;
+  readonly reason?: string;
+};
+
+type DeprecationReportBody = {
+  readonly id: string;
+  readonly anticipatedRemoval?: Date;
+  readonly message: string;
+  readonly sourceFile?: string;
+  readonly lineNumber?: number;
+  readonly columnNumber?: number;
+};
+
+type InterventionReportBody = {
+  readonly id: string;
+  readonly message: string;
+  readonly sourceFile?: string;
+  readonly lineNumber?: number;
+  readonly columnNumber?: number;
+};
+
+type ReportBody = CrashReportBody | DeprecationReportBody | InterventionReportBody;
+
+type Report = {
+  readonly type: ReportType;
+  readonly url: string;
+  readonly body?: ReportBody;
+};
