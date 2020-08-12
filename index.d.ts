@@ -354,18 +354,18 @@ export enum ScrollEventQuality {
 }
 
 /*
- * Report typings
+ * ReportingObserver typings
  * TODO: Should be removed once ReportingObserver will be standardised
  */
 
-type ReportType = 'crash' | 'deprecation' | 'intervention';
+export type ReportType = 'crash' | 'deprecation' | 'intervention';
 
-type CrashReportBody = {
+export type CrashReportBody = {
   readonly crashId: string;
   readonly reason?: string;
 };
 
-type DeprecationReportBody = {
+export type DeprecationReportBody = {
   readonly id: string;
   readonly anticipatedRemoval?: Date;
   readonly message: string;
@@ -374,7 +374,7 @@ type DeprecationReportBody = {
   readonly columnNumber?: number;
 };
 
-type InterventionReportBody = {
+export type InterventionReportBody = {
   readonly id: string;
   readonly message: string;
   readonly sourceFile?: string;
@@ -382,10 +382,28 @@ type InterventionReportBody = {
   readonly columnNumber?: number;
 };
 
-type ReportBody = CrashReportBody | DeprecationReportBody | InterventionReportBody;
+export type ReportBody = CrashReportBody | DeprecationReportBody | InterventionReportBody;
 
-type Report = {
+export type Report = {
   readonly type: ReportType;
   readonly url: string;
   readonly body?: ReportBody;
 };
+
+export type ReportingObserverCallback = (reports: Report[], observer: ReportingObserverInstance) => void;
+
+export type ReportingObserverOptions = {
+  types?: ReportType[];
+  buffered?: boolean;
+};
+
+export interface ReportingObserverInstance {
+  observe(): void;
+  disconnect(): void;
+  takeRecords(): Report[];
+}
+
+export interface ReportingObserverConstructor {
+  prototype: ReportingObserverInstance;
+  new (callback: ReportingObserverCallback, options?: ReportingObserverOptions): ReportingObserverInstance;
+}
