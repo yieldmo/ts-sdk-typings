@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "stuff",
   "main": "index.js",
+  "publishConfig": {
+    "registry": "https://nexus.yieldmo.com/repository/npm-private/"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
