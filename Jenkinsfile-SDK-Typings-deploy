@@ -1,0 +1,74 @@
+pipeline
+{
+    options
+    {
+        buildDiscarder(logRotator(numToKeepStr: '20'))
+		disableConcurrentBuilds()
+    }
+    agent
+	{
+		label 'linux-ubuntu-agent'
+	}
+    tools {
+        nodejs 'Node 8.10' 
+    }
+    stages
+    {
+		stage('Run the deployment')
+		{
+			steps
+			{
+				script
+				{
+                sh "node -v"
+                sh "env"
+                sh "git remote set-url origin https://vliubenok:_-Uz6zKC9CLyYuMy-e6R@gitlab.yieldmo.com/yieldmo/formats/ts-sdk-typings.git"
+                
+                sh(returnStdout: true, script: '''#!/bin/bash
+                    echo GIT_TAG=${GIT_TAG_NAME_PARAMETER:-${GIT_TAG_NAME}} >> TagsFile.txt
+                '''.stripIndent())
+                def props = readProperties interpolate: true, file: 'TagsFile.txt'
+                env['GIT_TAG'] = props['GIT_TAG'];
+
+                // check out the tag we have at this point
+                sh "git checkout ${GIT_TAG}"
+                sh "git pull origin ${GIT_TAG}"
+                sh "echo 'git pull command executed'"
+                sh """
+                    set +e
+                        npm version ${GIT_TAG}-B${BUILD_NUMBER}
+                    set -e
+                """
+                sh "npm publish --registry=https://nexus.yieldmo.com/repository/npm-private/"
+				}
+			}
+		}
+    }
+    post 
+    {
+        always
+        {
+			//Execute post steps. Always clean up after a build!
+            sh "ls"
+            sh "sudo apt --auto-remove -y purge npm"
+        }
+        success {
+            updateGitlabCommitStatus name: 'build', state: 'success'
+            sh "env"
+            mail to: 'formats@yieldmo.com',
+                subject: "Pipeline ${currentBuild.fullDisplayName} executed Succesfully",
+                body: "The pipeline ${env.JOB_NAME} executed Succesfully (<${env.BUILD_URL}|Open>)"                   
+        }
+        failure {
+            echo 'This will run only if the run was marked as failure'
+            updateGitlabCommitStatus name: 'build', state: 'failed'
+        }
+        unstable {
+            echo 'This will run only if the run was marked as unstable'
+        }
+        changed {
+            echo 'This will run only if the state of the Pipeline has changed'
+            echo 'For example, if the Pipeline was previously failing but is now successful'
+        }
+    }
+}
