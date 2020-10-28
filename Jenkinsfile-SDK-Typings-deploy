@@ -22,17 +22,19 @@ pipeline
 				{
                 sh "node -v"
                 sh "env"
-                // check out the tag we have at this point
+
                 sh(returnStdout: true, script: '''#!/bin/bash
+                    # check out the tag we have at this point
                     git checkout ${GIT_TAG_NAME_PARAMETER:-${GIT_TAG_NAME}}
+                    git pull origin ${GIT_TAG_NAME_PARAMETER:-${GIT_TAG_NAME}}
                 '''.stripIndent())
-                // git pull origin ${env.GIT_TAG_NAME_PARAMETER}:-${env.GIT_TAG_NAME}
-                sh """
+                sh "echo'git pull command executed'"
+                sh(returnStdout: true, script: '''#!/bin/bash
                     set +e
-                        npm version ${GIT_TAG_NAME_PARAMETER}-B${BUILD_NUMBER}
+                        npm version ${GIT_TAG_NAME_PARAMETER:-${GIT_TAG_NAME}}-B${BUILD_NUMBER}
                     set -e
-                """
-                sh "npm publish"
+                '''.stripIndent())
+                sh "npm publish --registry=https://nexus.yieldmo.com/repository/npm-private/"
 				}
 			}
 		}
