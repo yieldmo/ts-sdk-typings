@@ -21,7 +21,7 @@ pipeline
 				script
 				{
                 sh "node -v"
-                def tagName = GIT_TAG_NAME_PARAMETER ?: GIT_TAG_NAME
+                def tagName = ${GIT_TAG_NAME_PARAMETER} ?: ${GIT_TAG_NAME}
                 sh "env"
                 // check out the tag we have at this point
                 sh """
