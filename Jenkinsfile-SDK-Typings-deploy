@@ -21,7 +21,7 @@ pipeline
 				script
 				{
                 sh "node -v"
-                env ['tagName'] = 99
+                env ['tagName'] = ${GIT_TAG_NAME_PARAMETER}
                 sh "env"
                 // check out the tag we have at this point
                 sh """
