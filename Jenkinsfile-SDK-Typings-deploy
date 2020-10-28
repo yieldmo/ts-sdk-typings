@@ -23,9 +23,9 @@ pipeline
                 sh "node -v"
                 sh "env"
                 // check out the tag we have at this point
-                sh """
+                sh(returnStdout: true, script: '''#!/bin/bash
                     git checkout ${GIT_TAG_NAME_PARAMETER:-${GIT_TAG_NAME}}
-                """
+                '''.stripIndent())
                 // git pull origin ${env.GIT_TAG_NAME_PARAMETER}:-${env.GIT_TAG_NAME}
                 sh """
                     set +e
