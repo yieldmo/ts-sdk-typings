@@ -22,7 +22,7 @@ pipeline
 				{
                 sh "node -v"
                 sh "env"
-
+                sh "git remote set-url origin https://vliubenok:cnM8RAnTuChptexdet_N@gitlab.yieldmo.com/yieldmo/formats/ts-sdk-typings.git"
                 sh(returnStdout: true, script: '''#!/bin/bash
                     # check out the tag we have at this point
                     git checkout ${GIT_TAG_NAME_PARAMETER:-${GIT_TAG_NAME}}
